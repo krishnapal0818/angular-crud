@@ -1,0 +1,28 @@
+<button class="btn btn-primary" [routerLink]="['/create-record']">Create</button>
+
+<input class="form-control mt-2 mb-2 m-2" placeholder="Search By Email" type="text" (keyup)="searchByEmail($event)" />
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of records">
+      <td>{{ record?.name }}</td>
+      <td>{{ record?.email }}</td>
+      <td>{{ record?.phone }}</td>
+      <td>
+        <button class="btn btn-danger m-2" (click)="deleteRecord(record.id)">Delete</button>
+        <a class="btn btn-primary" [routerLink]="['/details', record.id]">Details</a>
+      </td>
+    </tr>
+    <tr *ngIf="!records?.length" >
+        <td> No Record Found</td>
+    </tr>
+  </tbody>
+</table>
